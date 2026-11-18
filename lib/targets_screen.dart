@@ -1,4 +1,5 @@
 import 'package:material_ui/material_ui.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:mr_void/calculator.dart';
 
 class TargetsScreen extends StatefulWidget {
@@ -93,7 +94,16 @@ class _TargetsScreenState extends State<TargetsScreen> {
   Widget build(BuildContext context) {
     final t = _targets;
     return Scaffold(
-      appBar: AppBar(title: const Text('MR VOID')),
+      appBar: AppBar(
+        title: const Text('MR VOID'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            tooltip: 'Sign out',
+            onPressed: () => Supabase.instance.client.auth.signOut(),
+          ),
+        ],
+      ),
       body: ListView(
         padding: const EdgeInsets.all(20),
         children: [
